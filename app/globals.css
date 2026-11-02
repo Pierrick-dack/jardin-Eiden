@@ -1,0 +1,410 @@
+@import "tailwindcss";
+
+/* ───────────────────────────────────────────────
+   Le Jardin d'Eïden — système de design
+   Vert botanique + ivoire + laiton
+   ─────────────────────────────────────────────── */
+
+:root {
+  --forest: #1e3a2b; /* vert forêt — signature */
+  --foliage: #2d5c42; /* vert feuillage */
+  --foliage-soft: #e7efe7;
+  --ivory: #fbf7ef; /* fond ivoire chaud */
+  --ivory-deep: #f1e9da;
+  --brass: #c9a24b; /* laiton / or — accent */
+  --brass-deep: #a8842f;
+  --earth: #8a5a3b; /* brun terre */
+  --ink: #20201c; /* texte principal */
+  --muted: #6a6a60; /* texte secondaire */
+  --line: #e4ddcd; /* filets / bordures */
+  --danger: #a33a2e;
+  --success: #2d6a4a;
+}
+
+@theme inline {
+  --color-forest: var(--forest);
+  --color-foliage: var(--foliage);
+  --color-foliage-soft: var(--foliage-soft);
+  --color-ivory: var(--ivory);
+  --color-ivory-deep: var(--ivory-deep);
+  --color-brass: var(--brass);
+  --color-brass-deep: var(--brass-deep);
+  --color-earth: var(--earth);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
+
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Ancres (#avis, #description…) : visibles sous l'en-tête collant */
+  scroll-padding-top: calc(var(--header-h, 110px) + 12px);
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Pas de défilement horizontal parasite sur mobile */
+body {
+  overflow-x: clip;
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
+}
+
+body {
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin: 0;
+}
+
+/* Boutons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+.btn-primary {
+  background: var(--forest);
+  color: var(--ivory);
+}
+.btn-primary:hover {
+  background: var(--foliage);
+}
+.btn-brass {
+  background: var(--brass);
+  color: var(--forest);
+}
+.btn-brass:hover {
+  background: var(--brass-deep);
+  color: var(--ivory);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--forest);
+  border-color: var(--forest);
+}
+.btn-outline:hover {
+  background: var(--forest);
+  color: var(--ivory);
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Bouton-icône (modifier, supprimer…) */
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 0.55rem;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--foliage);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  flex-shrink: 0;
+}
+.icon-btn:hover {
+  background: var(--foliage-soft);
+  border-color: var(--foliage);
+}
+.icon-btn:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 2px;
+}
+.icon-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.icon-btn-danger {
+  color: var(--danger);
+}
+.icon-btn-danger:hover {
+  background: #fbeae8;
+  border-color: var(--danger);
+}
+
+/* Badge / étiquette */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+  font-weight: 500;
+}
+
+/* Champs de formulaire */
+.field {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 0.6rem;
+  background: #fff;
+  color: var(--ink);
+  font-size: 0.95rem;
+  font-family: var(--font-sans);
+}
+.field:focus {
+  outline: 2px solid var(--brass);
+  outline-offset: 1px;
+  border-color: var(--brass);
+}
+label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* Lien discret */
+.link-muted {
+  color: var(--foliage);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Surtitre de section */
+.section-eyebrow {
+  margin: 0 0 0.35rem;
+  color: var(--brass-deep);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+
+/* Affiches (accueil) : image plein cadre + dégradé + texte */
+.poster {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  border-radius: 1.1rem;
+  color: #fff;
+  text-decoration: none;
+  background: var(--forest);
+  isolation: isolate;
+}
+.poster img {
+  transition: transform 0.6s ease;
+}
+.poster:hover img {
+  transform: scale(1.05);
+}
+.poster:focus-visible {
+  outline: 3px solid var(--brass);
+  outline-offset: 3px;
+}
+.poster-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(20, 40, 30, 0.88) 0%, rgba(20, 40, 30, 0.35) 50%, rgba(20, 40, 30, 0) 80%);
+}
+.poster-text {
+  position: relative;
+  padding: 1.35rem;
+}
+.poster-count {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+.poster-cta {
+  display: inline-block;
+  padding: 0.55rem 1.2rem;
+  border-radius: 9999px;
+  background: var(--ivory);
+  color: var(--forest);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.gender-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+@media (max-width: 1024px) {
+  .gender-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  /* 3e affiche (Enfants) sur toute la largeur, en bandeau */
+  .gender-grid > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    aspect-ratio: 2 / 1;
+  }
+}
+.gender-poster {
+  aspect-ratio: 1 / 1;
+  max-height: 520px;
+  width: 100%;
+}
+.gender-poster .poster-text {
+  padding: 2rem;
+}
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.1rem;
+}
+.category-poster {
+  aspect-ratio: 4 / 5;
+}
+@media (max-width: 1100px) {
+  .category-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 860px) {
+  .category-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 640px) {
+  .gender-grid {
+    grid-template-columns: 1fr;
+  }
+  .gender-poster,
+  .gender-grid > :last-child:nth-child(odd) {
+    aspect-ratio: 4 / 3;
+  }
+  .gender-poster .poster-text {
+    padding: 1.35rem;
+  }
+  .category-grid {
+    gap: 0.75rem;
+  }
+  .category-poster .poster-text {
+    padding: 0.9rem;
+  }
+}
+
+/* Engagements + présentation (accueil) */
+.promise-grid {
+  margin-top: 4rem;
+  padding: 1.75rem;
+  border: 1px solid var(--line);
+  border-radius: 1.1rem;
+  background: #fff;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+.about {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 3rem;
+  align-items: center;
+}
+.about-image {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+@media (max-width: 860px) {
+  .about {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+}
+
+/* Conteneur */
+/* Marges latérales fluides : 16px sur mobile, jusqu'à 40px sur grand écran.
+   !important car plusieurs pages posent un padding complet en style inline
+   (seule la partie verticale de ces styles doit s'appliquer). */
+:root {
+  --gutter: clamp(1rem, 3vw, 2.5rem);
+}
+.wrap {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-left: var(--gutter) !important;
+  padding-right: var(--gutter) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── Carte produit (components/product-card.tsx) ─── */
+.pc { position: relative; }
+.pc-spacer { visibility: hidden; pointer-events: none; }
+.pc-face {
+  position: absolute; top: 0; left: 0; right: 0; display: block; color: inherit; text-decoration: none;
+  border-radius: 1rem; padding: 0; background: transparent; outline: 2px solid transparent;
+  transition: top 0.18s ease, left 0.18s ease, right 0.18s ease, padding 0.18s ease, box-shadow 0.18s ease, outline-color 0.18s ease, background 0.18s ease;
+}
+.pc-media-box { position: relative; aspect-ratio: 1 / 1; border-radius: 0.9rem; }
+.pc-media { overflow: hidden; background: var(--ivory-deep); border: 1px solid var(--line); }
+.pc-media img { transition: transform 0.35s ease; }
+.pc-chip { position: absolute; top: 10px; left: 10px; background: rgba(251,247,239,0.92); color: var(--foliage); }
+.pc-soldout { position: absolute; top: 10px; right: 10px; background: var(--danger); color: #fff; }
+.pc-info { padding: 0.7rem 0.25rem 0; display: grid; gap: 0.25rem; }
+.pc-name {
+  font-family: var(--font-display); font-size: 1.02rem; line-height: 1.3; font-weight: 500; margin: 0; color: var(--ink);
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.pc-price { color: var(--foliage); font-weight: 600; font-size: 0.98rem; }
+.pc-face:focus-visible { outline-color: var(--brass); outline-offset: 3px; }
+
+/* Survol à la souris uniquement (pas sur écran tactile) */
+@media (hover: hover) and (pointer: fine) {
+  .pc:hover { z-index: 15; }
+  .pc:hover .pc-face {
+    top: -10px; left: -10px; right: -10px; padding: 10px 10px 14px;
+    background: #fff; outline-color: var(--foliage);
+    box-shadow: 0 18px 40px rgba(20,40,30,0.18);
+  }
+  .pc:hover .pc-name { -webkit-line-clamp: unset; display: block; color: var(--forest); }
+  .pc:hover .pc-media img { transform: scale(1.05); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pc-face, .pc-media img { transition: none; }
+}
